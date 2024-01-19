@@ -26,6 +26,10 @@ func (s *Service) AddTask(c *Task) error {
 	return s.repo.AddTask(c)
 }
 
+func (s *Service) DeleteTask(c *Task) error {
+	return s.repo.DeleteTask(c)
+}
+
 func (s *Service) GetTask(id uint) (*Task, error) {
 	return s.repo.GetTask(id)
 }

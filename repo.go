@@ -72,3 +72,11 @@ func (r *Repo) AddTask(t *Task) error {
 	}
 	return nil
 }
+
+func (r *Repo) DeleteTask(t *Task) error {
+	tx := r.db.Model(t).Delete(t)
+	if tx.Error != nil {
+		return tx.Error
+	}
+	return nil
+}

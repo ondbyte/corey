@@ -21,6 +21,7 @@ func main() {
 	}
 	err = corey.MigrateModels(db)
 	if err != nil {
+		corey.DropTables(db)
 		log.Fatal(err)
 	}
 	r := corey.NewRepo(db)
@@ -34,6 +35,7 @@ func main() {
 
 	chiRouter.Get("/contact/{id}", h.GetContact)
 	chiRouter.Get("/task/{id}", h.GetTask)
+	chiRouter.Delete("/task/{id}", h.DeleteTask)
 
 	chiRouter.Get("/contact", h.GetAllContact)
 	chiRouter.Get("/task", h.GetAllTask)
