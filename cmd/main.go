@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 
-	"github.com/gin-gonic/gin"
+	"github.com/go-chi/chi/v5"
 	"github.com/onbyte/corey"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -26,18 +27,19 @@ func main() {
 	s := corey.NewService(r)
 	h := corey.NewHandler(s)
 
-	router := gin.Default()
-	router.POST("contact", h.AddContact)
-	router.POST("task", h.AddTask)
+	//chi
+	chiRouter := chi.NewRouter()
+	chiRouter.Post("/contact", h.AddContact)
+	chiRouter.Post("/task", h.AddTask)
 
-	router.GET("contact/:id", h.GetContact)
-	router.GET("task/:id", h.GetTask)
+	chiRouter.Get("/contact/{id}", h.GetContact)
+	chiRouter.Get("/task/{id}", h.GetTask)
 
-	router.GET("contact", h.GetAllContact)
-	router.GET("task", h.GetAllTask)
+	chiRouter.Get("/contact", h.GetAllContact)
+	chiRouter.Get("/task", h.GetAllTask)
 
 	go func() {
-		err = router.Run(":8000")
+		err = http.ListenAndServe(":8000", chiRouter)
 		if err != nil {
 			panic(err)
 		}

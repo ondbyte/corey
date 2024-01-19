@@ -5,6 +5,7 @@ go 1.20
 require gorm.io/gorm v1.25.5
 
 require (
+	github.com/ajg/form v1.5.1 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -38,6 +39,8 @@ require (
 
 require (
 	github.com/gin-gonic/gin v1.9.1
+	github.com/go-chi/chi/v5 v5.0.11
+	github.com/go-chi/render v1.0.3
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/stretchr/testify v1.8.4
